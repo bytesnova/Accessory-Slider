@@ -44,7 +44,7 @@
         padding: 10px 0;
     }
     .card {
-        flex: 0 0 47.5%;
+        flex: 0 0 calc(100% / 4);
     }
 }
 
@@ -76,4 +76,13 @@
 
 .card-btn a button:hover {
     background: #015aa2;
+}
+
+.slidebar {
+    height: 5px;
+    background: #9c9b9b;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease-in-out;
 }
