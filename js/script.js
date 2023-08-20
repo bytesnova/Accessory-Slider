@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     slider.addEventListener('touchstart', (event) => {
         touchStartX = event.touches[0].clientX;
     }, { passive: true });
-    
+
     slider.addEventListener('touchend', (event) => {
         touchEndX = event.changedTouches[0].clientX;
         handleSwipe();
@@ -46,15 +46,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // Calculate the number of card sets
+    const numOfCardSets = Math.ceil(numOfCards / visibleCards);
+
     // Function to handle the general sliding behavior
     const slideToIndex = (index) => {
+
+        if (index < 0) {
+            index = numOfCardSets - 1;
+        }
+        else if (index >= numOfCardSets) {
+            index = 0;
+        }
+
         const slideDistance = index * visibleWidth;
         slider.style.transform = `translateX(-${slideDistance}px)`;
         currentIndex = index; // Update the currently displayed card sets
 
         // Update slidebar width based on the current index and increment
         const slidebarWidth = (currentIndex * slidebarIncrement) + 10;
-        slidebar.style.width = slidebarWidth + '%';
+        slidebar.style.width = `${slidebarWidth}%`;
     };
+
+    // Previous button click handler
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        slideToIndex(currentIndex - 1);
+    });
+
+    // Next button click handler
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        slideToIndex(currentIndex + 1);
+    });
 
 });

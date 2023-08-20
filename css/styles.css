@@ -86,3 +86,39 @@
     left: 0;
     transition: width 0.3s ease-in-out;
 }
+
+/* Control Buttons */
+.arrow {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-25%);
+    font-size: 4em;
+    height: 100px;
+    width: 50px;
+    text-align: center;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    z-index: 2;
+}
+
+
+.arrow:hover {
+    color: #9c9b9b;
+}
+
+.arrow.left {
+    left: 0;
+}
+
+.arrow.right {
+    right: 0;
+}
+
+/* Remove controls for mobile */
+@media (max-width: 768px) {
+    .arrow {
+        display: none !important;
+    }
+}
