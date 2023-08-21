@@ -45,7 +45,7 @@
         padding: 10px 0;
     }
     .card {
-        flex: 0 0 calc(100% / 4);
+        flex: 0 0 calc(100% / 6);
     }
 }
 
