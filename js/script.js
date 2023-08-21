@@ -61,12 +61,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const slideDistance = index * visibleWidth;
         slider.style.transform = `translateX(-${slideDistance}px)`;
-        currentIndex = index; // Update the currently displayed card sets
+        currentIndex = index; // Update the currently displayed card set
 
         // Update slidebar width based on the current index and increment
         const slidebarWidth = (currentIndex * slidebarIncrement) + 10;
         slidebar.style.width = `${slidebarWidth}%`;
     };
+
+    // Function to automatically slide cards
+    const autoSlide = () => {
+        const nextIndex = currentIndex + 1;
+        
+        slideToIndex(nextIndex);
+    };
+
+    // Automatically slide cards after 3 seconds
+    setInterval(autoSlide, 3000);
 
     // Previous button click handler
     document.getElementById('prevBtn').addEventListener('click', () => {
