@@ -1,3 +1,4 @@
+/* Global Styling */
 * {
   margin: 0;
   padding: 0;
@@ -38,7 +39,7 @@
     .slider-container {
         width: 100%;
         max-width: calc(100vw - 10%);
-        margin-top: 50%;
+        margin-top: 20%;
     }
     .card-slider {
         padding: 10px 0;
@@ -102,7 +103,6 @@
     transition: 0.3s ease-in-out;
     z-index: 2;
 }
-
 
 .arrow:hover {
     color: #9c9b9b;

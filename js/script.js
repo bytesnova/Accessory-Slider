@@ -1,3 +1,9 @@
+/**
+ * The control functionalities are added to the desktop displays for easy navigation but removed for mobile displays
+ * The touch gesture functionality is implemented for mobile to allow swiping through the cards
+ * Slidebar is also implemented for both the desktop display and mobile
+ */
+
 // Execution starts after the HTML document has been fully loaded
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -46,20 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Calculate the number of card sets
-    const numOfCardSets = Math.ceil(numOfCards / visibleCards);
-
     // Function to handle the general sliding behavior
     const slideToIndex = (index) => {
+        // Ensure the index value stays within valid bounds to prevent sliding beyond available cards
+        index = Math.max(0, Math.min(index, numOfCards - visibleCards));
 
-        if (index < 0) {
-            index = numOfCardSets - 1;
-        }
-        else if (index >= numOfCardSets) {
-            index = 0;
-        }
+        const maxSlideDistance = (numOfCards - visibleCards) * cardWidth;
+        const slideDistance = Math.max(0, Math.min(index * visibleWidth, maxSlideDistance));
 
-        const slideDistance = index * visibleWidth;
         slider.style.transform = `translateX(-${slideDistance}px)`;
         currentIndex = index; // Update the currently displayed card set
 
@@ -67,16 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const slidebarWidth = (currentIndex * slidebarIncrement) + 10;
         slidebar.style.width = `${slidebarWidth}%`;
     };
-
-    // Function to automatically slide cards
-    const autoSlide = () => {
-        const nextIndex = currentIndex + 1;
-        
-        slideToIndex(nextIndex);
-    };
-
-    // Automatically slide cards after 3 seconds
-    setInterval(autoSlide, 3000);
 
     // Previous button click handler
     document.getElementById('prevBtn').addEventListener('click', () => {
